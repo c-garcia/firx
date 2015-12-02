@@ -134,8 +134,9 @@
       (error-response w "downstream server did not return a 200 response"))))
 
 (defn process-request
-  "The heart of the Application Gateway. Checks if word is not _forbidden_
-  and, if it "
+  "The heart of the Application Gateway. Checks if word is not _forbidden_ or
+  _cached_ and if is not the case, it forwards the request to the orignal 
+  server."
   [word]
   (debug "Received request for word" word)
   (cond
