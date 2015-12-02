@@ -1,19 +1,27 @@
 # firx
 
 A small piece of code to show what an Application Gateway is
-after a question raise in the "Barcelona Software Craftmanship" 
+after a question raised in the "Barcelona Software Craftmanship" 
 Meetup on 2015-Nov-30. 
 
 The example consists of two ring-based servers. The first one
 `webapp` just waits for HTTP requests in the form 
-`/uppercase/word` to return a JSON map with the word in  
-uppercase form. 
-The second one, `appgw`, is the application gateway (l7 firwall,
-WAF, etc). It checks if the word is allowed (so not beloging
-to a list of problematic words that the server loads at startup 
-time) and, if so, forwards the request to `webapp`. To show
+`/uppercase/word` to return a JSON map with the word in uppercase form. 
+The application, however, does nothing to block any request or to
+optimize performance by any means possible. Any well-formed request
+will be answered.
+
+The second one, `appgw`, is the Application Gateway (l7 firwall,
+WAF, etc). It is there to exemplify some form of filterint and optimization 
+as these tools tend to provide. It checks if the word is an allowed one (so 
+not beloging to a list of problematic words that the server loads at startup 
+time) and, if so, forwards the request to `webapp`. To show 
 the multiple potential uses of an Application Gateway, 
 it also caches the result.
+
+The Application Gateway, therefore, is able to perform many functions 
+a tightly integrated way with the business logic provided by other 
+elements sitting behind it.
 
 ## Usage
 
